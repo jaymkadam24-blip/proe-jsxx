@@ -34,17 +34,15 @@ const Contact = () => {
     }
     setSubmitting(true);
     
-    const { error: supabaseError } = await supabase
-      .from('contacts')
-      .insert([
-        {
-          name: data.name,
-          email: data.email,
-          phone: data.phone,
-          service: data.service,
-          message: data.message
-        }
-      ]);
+    const { error: supabaseError } = await supabase.functions.invoke('submit-contact', {
+      body: {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        service: data.service,
+        message: data.message
+      }
+    });
 
     setSubmitting(false);
 
