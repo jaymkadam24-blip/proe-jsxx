@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, MessageCircle, Send } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/components/SEO";
 import { toast } from "sonner";
+import { supabase } from "@/lib/supabase";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -32,9 +33,27 @@ const Contact = () => {
       return;
     }
     setSubmitting(true);
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 800));
+    
+    const { error: supabaseError } = await supabase
+      .from('contacts')
+      .insert([
+        {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          service: data.service,
+          message: data.message
+        }
+      ]);
+
     setSubmitting(false);
+
+    if (supabaseError) {
+      console.error('Supabase error:', supabaseError);
+      toast.error("Failed to submit request. Please try again.");
+      return;
+    }
+
     toast.success("Thanks! We'll get back to you within an hour.");
     e.target.reset();
   };
