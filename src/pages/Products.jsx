@@ -1,0 +1,109 @@
+import { Link } from "react-router-dom";
+import { Smartphone, Laptop, Monitor, BadgeCheck, ShieldCheck, RefreshCw, ArrowRight } from "lucide-react";
+import { Layout } from "@/components/layout/Layout";
+import { SEO } from "@/components/SEO";
+import { SectionHeader } from "@/components/SectionHeader";
+import productsImg from "@/assets/products-apple.jpg";
+
+const products = [
+  { icon: Smartphone, name: "iPhone", desc: "Latest iPhone models with full warranty and same-day setup.", tag: "Latest" },
+  { icon: Laptop, name: "MacBook Pro & Air", desc: "Configured to your workflow, deployed pre-imaged.", tag: "Best Seller" },
+  { icon: Monitor, name: "iMac & Mac mini", desc: "Desktop power for studios, agencies, and pro users.", tag: "Pro" },
+];
+
+const refurbished = [
+  { name: "Refurbished MacBook Pro", spec: "M-series · 16GB · 512GB", price: "From ₹89,000" },
+  { name: "Refurbished iMac", spec: "24-inch · M-series", price: "From ₹1,12,000" },
+  { name: "Refurbished iPhone", spec: "Excellent condition", price: "From ₹39,000" },
+];
+
+const guarantees = [
+  { icon: BadgeCheck, title: "Quality assured", desc: "Every device passes a 40-point inspection before sale." },
+  { icon: ShieldCheck, title: "Warranty included", desc: "6-month minimum warranty on all refurbished hardware." },
+  { icon: RefreshCw, title: "Easy upgrades", desc: "Trade in your old device for credit toward your next." },
+];
+
+const Products = () => {
+  return (
+    <Layout>
+      <SEO
+        title="Apple Products & Refurbished Devices — ProE"
+        description="Buy iPhone, MacBook, iMac, and certified refurbished Apple devices from ProE. Quality assured, warranty included."
+        path="/products"
+      />
+
+      <section className="bg-gradient-hero pt-20 md:pt-28 pb-12">
+        <div className="max-w-7xl mx-auto px-6 animate-fade-in">
+          <p className="eyebrow mb-5">Products</p>
+          <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-[0.95] max-w-4xl text-balance">
+            Apple, made <span className="text-muted-foreground">accessible.</span>
+          </h1>
+          <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            New, refurbished, and rented — find the right Apple hardware for your team without compromising on quality.
+          </p>
+        </div>
+        <div className="px-6 mt-12">
+          <div className="max-w-7xl mx-auto">
+            <div className="rounded-3xl overflow-hidden aspect-[21/8] bg-secondary">
+              <img src={productsImg} alt="Apple products lineup" width={1400} height={900} loading="eager" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeader eyebrow="New devices" title="The Apple lineup, professionally deployed." />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {products.map(({ icon: IconComponent, name, desc, tag }) => (
+              <div key={name} className="card-precision p-10 flex flex-col min-h-[320px] bg-primary text-primary-foreground">
+                <div className="flex justify-between items-start mb-8">
+                  <div className="size-12 rounded-xl bg-background/20 flex items-center justify-center">
+                    <IconComponent className="size-5 text-primary-foreground" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary-foreground bg-background/20 px-2.5 py-1 rounded-full">{tag}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">{name}</h3>
+                <p className="text-primary-foreground/80 leading-relaxed mb-auto">{desc}</p>
+                <Link to="/contact" className="mt-8 pt-6 border-t border-primary-foreground/20 text-[13px] font-medium flex items-center justify-between">
+                  Inquire <ArrowRight className="size-4 text-primary-foreground" />
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 md:py-32 bg-secondary/40 border-y border-border">
+        <div className="max-w-7xl mx-auto px-6">
+          <SectionHeader eyebrow="Refurbished" title="Premium quality. Honest prices." subtitle="Certified refurbished Apple devices, restored to factory standards by our in-house engineers." />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-16">
+            {refurbished.map((r) => (
+              <div key={r.name} className="card-precision p-8 bg-primary text-primary-foreground">
+                <p className="eyebrow text-primary-foreground/60 mb-3">Certified</p>
+                <h3 className="text-lg font-semibold mb-1">{r.name}</h3>
+                <p className="text-sm text-primary-foreground/80 mb-6">{r.spec}</p>
+                <p className="text-2xl font-semibold tracking-tight">{r.price}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {guarantees.map(({ icon: IconComponent, title, desc }) => (
+              <div key={title} className="flex gap-4">
+                <div className="size-10 rounded-xl bg-background border border-border flex items-center justify-center shrink-0">
+                  <IconComponent className="size-5 text-brand-blue" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">{title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default Products;

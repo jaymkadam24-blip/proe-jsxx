@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ProE Design System — Precision Steel & Glass
+   All colors MUST be HSL. */
+
+@layer base {
+  :root {
+    /* Background = #f5f5f5, Foreground = #333333, Accent = #faa71d */
+    --background: 0 0% 96%;
+    --foreground: 0 0% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
+
+    /* Primary = brand amber (CTAs & key surfaces) */
+    --primary: 38 96% 55%;
+    --primary-foreground: 0 0% 15%;
+
+    /* Steel surfaces */
+    --secondary: 0 0% 92%;
+    --secondary-foreground: 0 0% 20%;
+
+    --muted: 0 0% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    /* Accent = brand amber */
+    --accent: 38 96% 55%;
+    --accent-foreground: 0 0% 20%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 38 96% 55%;
+
+    --radius: 1.25rem;
+
+    /* ProE custom tokens — neutral steel */
+    --steel-50: 0 0% 98%;
+    --steel-100: 0 0% 92%;
+    --steel-200: 0 0% 88%;
+    --steel-300: 0 0% 80%;
+    --steel-500: 0 0% 40%;
+    --steel-700: 0 0% 25%;
+
+    /* Brand = amber #faa71d (kept as `brand-blue` token name for compatibility) */
+    --brand-blue: 38 96% 55%;
+    --brand-blue-soft: 38 100% 94%;
+
+    --gradient-hero: linear-gradient(180deg, hsl(0 0% 96%) 0%, hsl(0 0% 92%) 100%);
+    --gradient-blue: linear-gradient(135deg, hsl(38 96% 55%) 0%, hsl(32 95% 50%) 100%);
+    --shadow-precision: 0 12px 24px -10px hsl(38 96% 55% / 0.25);
+    --shadow-glass: 0 1px 0 0 hsl(0 0% 100% / 0.6) inset, 0 8px 32px -12px hsl(0 0% 0% / 0.08);
+    --transition-precision: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --sidebar-background: 0 0% 96%;
+    --sidebar-foreground: 0 0% 25%;
+    --sidebar-primary: 0 0% 20%;
+    --sidebar-primary-foreground: 0 0% 96%;
+    --sidebar-accent: 0 0% 92%;
+    --sidebar-accent-foreground: 0 0% 20%;
+    --sidebar-border: 0 0% 88%;
+    --sidebar-ring: 38 96% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  ::selection {
+    background-color: hsl(var(--brand-blue) / 0.15);
+    color: hsl(var(--brand-blue));
+  }
+}
+
+@layer components {
+  .frosted-nav {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background-color: hsl(var(--background) / 0.72);
+    border-bottom: 1px solid hsl(var(--border));
+  }
+
+  .card-precision {
+    @apply bg-card border-2 border-transparent rounded-3xl;
+    transition: var(--transition-precision);
+  }
+
+  .card-precision:hover,
+  .card-precision:focus-within {
+    @apply border-foreground/20;
+    box-shadow: var(--shadow-precision);
+    transform: translateY(-4px);
+  }
+
+  .card-precision.bg-primary:hover,
+  .card-precision.bg-primary:focus-within {
+    @apply border-foreground;
+  }
+
+  .text-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground;
+  }
+}
