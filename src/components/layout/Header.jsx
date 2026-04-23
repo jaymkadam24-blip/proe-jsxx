@@ -39,7 +39,7 @@ export const Header = () => {
               >
                 {item.label}
                 {location.pathname === item.to && (
-                  <span className="absolute -bottom-[21px] left-1/2 -translate-x-1/2 size-1.5 bg-primary rounded-full" />
+                  <span className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-primary rounded-full animate-in fade-in slide-in-from-bottom-1" />
                 )}
               </NavLink>
             ))}
