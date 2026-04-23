@@ -24,7 +24,7 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 frosted-nav">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <Logo className="h-7" />
+          <Logo className="h-9" />
           <nav className="hidden md:flex gap-7 text-[13px] font-medium">
             {navItems.map((item) => (
               <NavLink
@@ -32,12 +32,15 @@ export const Header = () => {
                 to={item.to}
                 end={item.to === "/"}
                 className={({ isActive }) =>
-                  `transition-colors hover:text-foreground ${
-                    isActive ? "text-primary font-bold underline underline-offset-4 decoration-2" : "text-muted-foreground"
+                  `relative transition-colors hover:text-foreground py-2 ${
+                    isActive ? "text-primary font-semibold" : "text-muted-foreground"
                   }`
                 }
               >
                 {item.label}
+                {location.pathname === item.to && (
+                  <span className="absolute -bottom-[21px] left-1/2 -translate-x-1/2 size-1.5 bg-primary rounded-full" />
+                )}
               </NavLink>
             ))}
           </nav>

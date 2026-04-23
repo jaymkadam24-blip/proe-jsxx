@@ -19,7 +19,7 @@ export const Logo = ({
   if (!asLink) return logo;
 
   return (
-    <Link to="/" aria-label="ProE home" className="inline-flex items-center">
+    <Link to="/" aria-label="ProE home" className="inline-flex items-center hover:scale-[1.05] active:scale-[0.98] transition-all duration-300">
       {logo}
     </Link>
   );
