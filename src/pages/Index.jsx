@@ -68,13 +68,13 @@ const Index = () => {
         {/* Visual Anchor */}
         <div className="px-6 pb-20">
           <div className="max-w-7xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden bg-secondary aspect-[21/9] shadow-glass">
+            <div className="relative rounded-3xl overflow-hidden bg-[#f2f2f2] aspect-[21/9] shadow-glass border border-border">
               <img
                 src={heroImg}
-                alt="ProE enterprise data center infrastructure"
+                alt="ProE Apple device ecosystem and IT solutions"
                 width={1600}
                 height={900}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain p-4 md:p-12"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/30 to-transparent" />
               <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10 flex justify-between items-end">

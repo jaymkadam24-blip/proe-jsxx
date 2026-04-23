@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           <div className="col-span-2">
-            <Logo variant="dark" className="h-9 mb-4" asLink={false} />
+            <Logo className="h-9 mb-4" asLink={false} />
             <p className="text-sm text-muted-foreground max-w-xs leading-relaxed italic">
               Rising to new horizons.
             </p>

@@ -24,7 +24,7 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 frosted-nav">
       <div className="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-10">
-          <Logo variant="dark" className="h-7" />
+          <Logo className="h-7" />
           <nav className="hidden md:flex gap-7 text-[13px] font-medium">
             {navItems.map((item) => (
               <NavLink

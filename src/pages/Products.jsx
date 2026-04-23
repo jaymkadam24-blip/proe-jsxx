@@ -5,10 +5,14 @@ import { SEO } from "@/components/SEO";
 import { SectionHeader } from "@/components/SectionHeader";
 import productsImg from "@/assets/products-apple.jpg";
 
+import iphoneImg from "@/assets/product-iphone.jpg";
+import macbookImg from "@/assets/product-macbook.jpg";
+import imacImg from "@/assets/product-imac.jpg";
+
 const products = [
-  { icon: Smartphone, name: "iPhone", desc: "Latest iPhone models with full warranty and same-day setup.", tag: "Latest" },
-  { icon: Laptop, name: "MacBook Pro & Air", desc: "Configured to your workflow, deployed pre-imaged.", tag: "Best Seller" },
-  { icon: Monitor, name: "iMac & Mac mini", desc: "Desktop power for studios, agencies, and pro users.", tag: "Pro" },
+  { icon: Smartphone, name: "iPhone", desc: "Latest iPhone models with full warranty and same-day setup.", tag: "Latest", image: iphoneImg },
+  { icon: Laptop, name: "MacBook Pro & Air", desc: "Configured to your workflow, deployed pre-imaged.", tag: "Best Seller", image: macbookImg },
+  { icon: Monitor, name: "iMac & Mac mini", desc: "Desktop power for studios, agencies, and pro users.", tag: "Pro", image: imacImg },
 ];
 
 const refurbished = [
@@ -44,8 +48,8 @@ const Products = () => {
         </div>
         <div className="px-6 mt-12">
           <div className="max-w-7xl mx-auto">
-            <div className="rounded-3xl overflow-hidden aspect-[21/8] bg-secondary">
-              <img src={productsImg} alt="Apple products lineup" width={1400} height={900} loading="eager" className="w-full h-full object-cover" />
+            <div className="rounded-[2.5rem] overflow-hidden bg-white border border-border shadow-sm">
+              <img src={productsImg} alt="Apple products lineup" width={1400} height={900} loading="eager" className="w-full h-auto object-cover" />
             </div>
           </div>
         </div>
@@ -55,19 +59,28 @@ const Products = () => {
         <div className="max-w-7xl mx-auto px-6">
           <SectionHeader eyebrow="New devices" title="The Apple lineup, professionally deployed." />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {products.map(({ icon: IconComponent, name, desc, tag }) => (
-              <div key={name} className="card-precision p-10 flex flex-col min-h-[320px] bg-primary text-primary-foreground">
-                <div className="flex justify-between items-start mb-8">
-                  <div className="size-12 rounded-xl bg-background/20 flex items-center justify-center">
-                    <IconComponent className="size-5 text-primary-foreground" />
+            {products.map(({ icon: IconComponent, name, desc, tag, image }) => (
+              <div key={name} className="card-precision p-0 flex flex-col min-h-[520px] bg-primary text-primary-foreground overflow-hidden">
+                <div className="p-4 flex-1 flex flex-col">
+                  <div className="relative h-64 bg-background/10 rounded-[2.5rem] p-8 flex items-end justify-center group overflow-hidden">
+                    <img 
+                      src={image} 
+                      alt={name} 
+                      className="max-h-[90%] w-auto object-contain transition-transform duration-500 group-hover:scale-110 translate-y-4 rounded-[2rem]"
+                    />
+                    <div className="absolute top-6 left-6 size-10 rounded-xl bg-background/20 flex items-center justify-center">
+                      <IconComponent className="size-5 text-primary-foreground" />
+                    </div>
+                    <span className="absolute top-6 right-6 text-[10px] font-bold uppercase tracking-widest text-primary-foreground bg-background/20 px-2.5 py-1 rounded-full">{tag}</span>
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-primary-foreground bg-background/20 px-2.5 py-1 rounded-full">{tag}</span>
+                  <div className="p-6 md:p-8 flex flex-col flex-1">
+                    <h3 className="text-xl font-semibold mb-3">{name}</h3>
+                    <p className="text-primary-foreground/80 leading-relaxed mb-auto text-sm">{desc}</p>
+                    <Link to="/contact" className="mt-8 pt-6 border-t border-primary-foreground/20 text-[13px] font-medium flex items-center justify-between">
+                      Inquire <ArrowRight className="size-4 text-primary-foreground" />
+                    </Link>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{name}</h3>
-                <p className="text-primary-foreground/80 leading-relaxed mb-auto">{desc}</p>
-                <Link to="/contact" className="mt-8 pt-6 border-t border-primary-foreground/20 text-[13px] font-medium flex items-center justify-between">
-                  Inquire <ArrowRight className="size-4 text-primary-foreground" />
-                </Link>
               </div>
             ))}
           </div>
