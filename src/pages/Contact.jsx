@@ -5,6 +5,8 @@ import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/components/SEO";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import { usePageLoader } from "@/hooks/usePageLoader";
+import { ContactSkeleton } from "@/components/skeletons/PageSkeletons";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -15,7 +17,9 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
+  const loading = usePageLoader(700);
   const [submitting, setSubmitting] = useState(false);
+  if (loading) return <ContactSkeleton />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -67,41 +71,41 @@ const Contact = () => {
       />
 
       <section className="bg-gradient-hero pt-20 md:pt-28 pb-16">
-        <div className="max-w-7xl mx-auto px-6 animate-fade-in">
-          <p className="eyebrow mb-5">Contact</p>
-          <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter leading-[0.95] max-w-4xl text-balance">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 animate-fade-in">
+          <p className="eyebrow mb-4 md:mb-5">Contact</p>
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-semibold tracking-tighter leading-[1] md:leading-[0.95] max-w-4xl text-balance">
             Let's talk about <span className="text-muted-foreground">your IT.</span>
           </h1>
-          <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
+          <p className="mt-4 md:mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl leading-relaxed">
             Open Monday to Saturday, 10:00 am – 7:30 pm. For urgent issues, call us or chat on WhatsApp.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-8">
+      <section className="py-14 md:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-8">
           {/* Contact info */}
-          <div className="md:col-span-2 space-y-4">
-            <a href="tel:+919004827080" className="card-precision p-6 flex items-start gap-4 block bg-primary text-primary-foreground">
-              <div className="size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
-                <Phone className="size-5 text-primary-foreground" />
+          <div className="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
+            <a href="tel:+919004827080" className="card-precision p-5 md:p-6 flex items-start gap-4 block bg-primary text-primary-foreground">
+              <div className="size-9 md:size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
+                <Phone className="size-4 md:size-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="eyebrow text-primary-foreground/60 mb-1">Call</p>
-                <p className="font-medium">+91 9004 827 080</p>
-                <p className="font-medium">+91 8828 137 080</p>
-                <p className="text-sm text-primary-foreground/80 mt-1">Mon–Sat · 10:00 am – 7:30 pm</p>
+                <p className="font-medium text-sm md:text-base">+91 9004 827 080</p>
+                <p className="font-medium text-sm md:text-base">+91 8828 137 080</p>
+                <p className="text-xs md:text-sm text-primary-foreground/80 mt-1">Mon–Sat · 10:00 am – 7:30 pm</p>
               </div>
             </a>
 
-            <a href="mailto:support@proe.co.in" className="card-precision p-6 flex items-start gap-4 block bg-primary text-primary-foreground">
-              <div className="size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
-                <Mail className="size-5 text-primary-foreground" />
+            <a href="mailto:support@proe.co.in" className="card-precision p-5 md:p-6 flex items-start gap-4 block bg-primary text-primary-foreground">
+              <div className="size-9 md:size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
+                <Mail className="size-4 md:size-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="eyebrow text-primary-foreground/60 mb-1">Email</p>
-                <p className="font-medium">support@proe.co.in</p>
-                <p className="font-medium">himanshu@proe.co.in</p>
+                <p className="font-medium text-sm md:text-base">support@proe.co.in</p>
+                <p className="font-medium text-sm md:text-base">himanshu@proe.co.in</p>
               </div>
             </a>
 
@@ -109,26 +113,26 @@ const Contact = () => {
               href={`https://wa.me/${phone}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="card-precision p-6 flex items-start gap-4 block bg-primary text-primary-foreground"
+              className="card-precision p-5 md:p-6 flex items-start gap-4 block bg-primary text-primary-foreground"
             >
-              <div className="size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
-                <MessageCircle className="size-5 text-primary-foreground" />
+              <div className="size-9 md:size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
+                <MessageCircle className="size-4 md:size-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="eyebrow text-primary-foreground/60 mb-1">WhatsApp</p>
-                <p className="font-medium">Chat with us</p>
-                <p className="text-sm text-primary-foreground/80 mt-1">Quickest response</p>
+                <p className="font-medium text-sm md:text-base">Chat with us</p>
+                <p className="text-xs md:text-sm text-primary-foreground/80 mt-1">Quickest response</p>
               </div>
             </a>
 
-            <div className="card-precision p-6 flex items-start gap-4 bg-primary text-primary-foreground">
-              <div className="size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
-                <MapPin className="size-5 text-primary-foreground" />
+            <div className="card-precision p-5 md:p-6 flex items-start gap-4 bg-primary text-primary-foreground">
+              <div className="size-9 md:size-10 rounded-xl bg-background/20 flex items-center justify-center shrink-0">
+                <MapPin className="size-4 md:size-5 text-primary-foreground" />
               </div>
               <div>
                 <p className="eyebrow text-primary-foreground/60 mb-1">Visit</p>
-                <p className="font-medium">ProE · Prowesses Enterprises</p>
-                <p className="text-sm text-primary-foreground/80 mt-1">003, Ground Floor, National Storage Building, Near J&J House, SB Marg, Mahim West, Mumbai, Maharashtra 400016</p>
+                <p className="font-medium text-sm md:text-base">ProE · Prowesses Enterprises</p>
+                <p className="text-xs md:text-sm text-primary-foreground/80 mt-1">003, Ground Floor, National Storage Building, Near J&J House, SB Marg, Mahim West, Mumbai, Maharashtra 400016</p>
               </div>
             </div>
           </div>
@@ -215,9 +219,9 @@ const Contact = () => {
         </div>
       </section>
 
-      <section className="pb-24">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="rounded-3xl overflow-hidden border border-border h-[400px]">
+      <section className="pb-16 md:pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="rounded-2xl md:rounded-3xl overflow-hidden border border-border h-[280px] sm:h-[350px] md:h-[400px]">
             <iframe
               title="ProE office location"
               src="https://www.google.com/maps?q=National+Storage+Building+SB+Marg+Mahim+West+Mumbai+400016&output=embed"

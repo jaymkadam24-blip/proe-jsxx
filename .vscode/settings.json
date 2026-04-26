@@ -1,0 +1,20 @@
+{
+  // Disable VS Code's built-in CSS validator so it doesn't flag
+  // Tailwind-specific directives (@tailwind, @apply, @layer) as unknown.
+  // Tailwind CSS IntelliSense extension handles linting instead.
+  "css.validate": false,
+  "scss.validate": false,
+  "less.validate": false,
+
+  // Tell the Tailwind IntelliSense extension where to find the config
+  "tailwindCSS.experimental.classRegex": [],
+  "tailwindCSS.includeLanguages": {
+    "javascript": "javascript",
+    "javascriptreact": "javascript"
+  },
+
+  // Treat .css files as PostCSS so the editor uses the right grammar
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
+}

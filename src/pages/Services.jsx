@@ -3,6 +3,8 @@ import { Smartphone, Laptop, Repeat, Server, HardDrive, Cable, Power, Shield, Wi
 import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/components/SEO";
 import { SectionHeader } from "@/components/SectionHeader";
+import { usePageLoader } from "@/hooks/usePageLoader";
+import { ServicesSkeleton } from "@/components/skeletons/PageSkeletons";
 
 const categories = [
   {
@@ -51,6 +53,8 @@ const categories = [
 ];
 
 const Services = () => {
+  const loading = usePageLoader(700);
+  if (loading) return <ServicesSkeleton />;
   return (
     <Layout>
       <SEO

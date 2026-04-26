@@ -3,6 +3,8 @@ import { Compass, Eye, Users, ArrowRight, Sparkles, ShieldCheck, HandshakeIcon, 
 import { Layout } from "@/components/layout/Layout";
 import { SEO } from "@/components/SEO";
 import clientsImg from "@/assets/clients-grid.png";
+import { usePageLoader } from "@/hooks/usePageLoader";
+import { AboutSkeleton } from "@/components/skeletons/PageSkeletons";
 
 const pillars = [
   { icon: Compass, title: "Mission", desc: "To provide quick diagnosis with genuine alternative parts that save your valuable time — delivered with a friendly approach. We think, we work and we grow  team." },
@@ -18,6 +20,8 @@ const aces = [
 ];
 
 const About = () => {
+  const loading = usePageLoader(700);
+  if (loading) return <AboutSkeleton />;
   return (
     <Layout>
       <SEO
